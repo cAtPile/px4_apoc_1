@@ -1,0 +1,29 @@
+<launch>
+    <!-- 1. 启动apoc节点 -->
+    <node name="apoc_node" pkg="apoc_pkg" type="apoc_node" output="screen">
+        <!-- 2. 配置PID参数（覆盖默认值，根据实际无人机调优） -->
+        <param name="/apoc/pid/x/kp" value="0.9" />  <!-- X轴比例系数调大，响应更快 -->
+        <param name="/apoc/pid/x/ki" value="0.15" /> <!-- X轴积分系数调小，减少超调 -->
+        <param name="/apoc/pid/x/kd" value="0.12" /> <!-- X轴微分系数微调，抑制震荡 -->
+        <param name="/apoc/pid/x/out_min" value="-0.6" />
+        <param name="/apoc/pid/x/out_max" value="0.6" />
+
+        <param name="/apoc/pid/y/kp" value="0.9" />  <!-- Y轴与X轴对称 -->
+        <param name="/apoc/pid/y/ki" value="0.15" />
+        <param name="/apoc/pid/y/kd" value="0.12" />
+        <param name="/apoc/pid/y/out_min" value="-0.6" />
+        <param name="/apoc/pid/y/out_max" value="0.6" />
+
+        <param name="/apoc/pid/z/kp" value="1.1" />  <!-- Z轴比例系数调大，增强高度稳定性 -->
+        <param name="/apoc/pid/z/ki" value="0.25" /> <!-- Z轴积分系数调大，消除静态误差 -->
+        <param name="/apoc/pid/z/kd" value="0.18" />
+        <param name="/apoc/pid/z/out_min" value="-0.4" />
+        <param name="/apoc/pid/z/out_max" value="0.4" />
+
+        <param name="/apoc/pid/yaw/kp" value="0.7" /> <!-- Yaw比例系数调大，增强航向响应 -->
+        <param name="/apoc/pid/yaw/ki" value="0.08" /> <!-- Yaw积分系数调小，避免航向漂移过大 -->
+        <param name="/apoc/pid/yaw/kd" value="0.06" />
+        <param name="/apoc/pid/yaw/out_min" value="-0.25" />
+        <param name="/apoc/pid/yaw/out_max" value="0.25" />
+    </node>
+</launch>
